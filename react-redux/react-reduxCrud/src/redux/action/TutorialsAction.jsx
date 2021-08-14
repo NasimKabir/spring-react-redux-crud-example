@@ -15,3 +15,16 @@ export const createTutorial = (tutorial) => async (dispatch) => {
         return Promise.reject(err);
     }
 };
+
+export const retriveTutorial=()=>
+    async(dispatch)=>{
+        try {
+            const response=await TutorialsService.getAll();
+            dispatch({
+                type:RETRIEVE_TUTORIALS,
+                payload:response.data
+            })
+        } catch (error) {
+            console.log(error)
+        }    
+}
