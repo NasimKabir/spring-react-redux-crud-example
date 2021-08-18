@@ -2,14 +2,15 @@ import React, { useEffect } from 'react';
 import '../App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { retriveTutorial } from '../redux/action/TutorialsAction';
+import { Link } from "react-router-dom";
 
 const TutorialList = () => {
 
-  const tutorials = useSelector(state => state.tutorials);
+  const tutorialList = useSelector(state => state.tutorials);
 
   const dispatch = useDispatch();
 
-  console.log(tutorials)
+  console.log(tutorialList)
 
   useEffect(() => {
     dispatch(retriveTutorial())
@@ -28,15 +29,25 @@ const TutorialList = () => {
           </tr>
         </thead>
         <tbody>
-          {tutorials.map((tutorial, index) => (
-            <tr>
-              <td key={index}> {tutorial.id}</td>
+          {tutorialList && tutorialList.tutorials.map((tutorial) => (
+            <tr key={tutorial.id}>
+              <td> {tutorial.id}</td>
               <td>{tutorial.title}</td>
               <td> {tutorial.description}</td>
-              <td> {tutorial.published? "Published" : "Pending"}</td>
+              <td> {tutorial.published ? "Published" : "Pending"}</td>
               <td>
-                <button><span className="edit"><i class="fas fa-edit" ></i></span></button>
-                <button><span className="delete"><i class="fas fa-trash"></i></span></button></td>
+              <button  >
+                <Link to={"/tutorials/" + tutorial.id} >
+                  <span className="view"><i className="fas fa-eye"></i></span>
+                </Link>
+                </button>
+                <button>
+                <Link to={"/tutorials/" + tutorial.id} >
+                  <span className="edit"><i className="fas fa-edit" ></i></span>
+                </Link>
+                </button>
+
+                <button><span className="delete"><i className="fas fa-trash"></i></span></button></td>
             </tr>
           ))
           }

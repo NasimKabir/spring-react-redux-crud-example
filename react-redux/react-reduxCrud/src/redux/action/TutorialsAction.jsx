@@ -1,4 +1,4 @@
-import { CREATE_TUTORIAL, RETRIEVE_TUTORIALS } from '../types/tutorialsTypes';
+import { CREATE_TUTORIAL, RETRIEVE_TUTORIALS,GET_TUTORIAL_ID,DELETE_TUTORIAL } from '../types/tutorialsTypes';
 import TutorialsService from '../../services/TutorialsService';
 
 export const createTutorial = (tutorial) => async (dispatch) => {
@@ -28,3 +28,14 @@ export const retriveTutorial=()=>
             console.log(error)
         }    
 }
+
+export const getTutorialById = (tutorialId) => async (dispatch) => {
+    const response = await TutorialsService.get(tutorialId);
+    console.log(response.data)
+    dispatch({
+        type: GET_TUTORIAL_ID,
+        payload: response.data
+    })
+};
+
+

@@ -1,3 +1,12 @@
+
+.view{
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  margin-right: 2px;
+  min-height: 22px;
+  min-width: 12px;
+}
 .edit{
   font-size: 22px;
   display: flex;
@@ -5,7 +14,6 @@
   margin-right: 2px;
   min-height: 22px;
   min-width: 12px;
-  background-color: cornflowerblue;
 }
 
 .delete{

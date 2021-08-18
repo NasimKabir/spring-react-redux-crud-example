@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import AddTutorial from "./components/AddTutorial";
 import TutorialList from './components/TutorialList';
+import ViewTutorial from './components/ViewTutorial';
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
           <Switch>
             <Route exact path={["/", "/tutorials"]} component={TutorialList} /> 
             <Route exact path="/add" component={AddTutorial} />
-           {/*  <Route path="/tutorials/:id" component={Tutorial} /> */}
+            <Route exact path="/tutorials/:id" component={ViewTutorial} /> 
           </Switch>
         </div>
   </Router>
