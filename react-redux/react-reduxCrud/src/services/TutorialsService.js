@@ -12,10 +12,18 @@ const get = id => {
   return httpClient.get(`/tutorials/${id}`);
 };
 
+const deleteTutorial = id => {
+  return httpClient.delete(`/tutorials/${id}`);
+};
+const updateTutorial=(id,tutorial)=>{
+  return httpClient.put(`/tutorials/${id}`,tutorial);
+}
 const TutorialsService = {
   getAll,
   create,
-  get
+  get,
+  deleteTutorial,
+  updateTutorial
 }
 
 export default TutorialsService;

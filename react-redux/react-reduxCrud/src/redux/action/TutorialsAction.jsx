@@ -1,4 +1,4 @@
-import { CREATE_TUTORIAL, RETRIEVE_TUTORIALS,GET_TUTORIAL_ID,DELETE_TUTORIAL } from '../types/tutorialsTypes';
+import { CREATE_TUTORIAL, RETRIEVE_TUTORIALS, GET_TUTORIAL_ID, DELETE_TUTORIAL, UPDATE_TUTORIAL } from '../types/tutorialsTypes';
 import TutorialsService from '../../services/TutorialsService';
 
 export const createTutorial = (tutorial) => async (dispatch) => {
@@ -16,18 +16,18 @@ export const createTutorial = (tutorial) => async (dispatch) => {
     }
 };
 
-export const retriveTutorial=()=>
-    async(dispatch)=>{
+export const retriveTutorial = () =>
+    async (dispatch) => {
         try {
-            const response=await TutorialsService.getAll();
+            const response = await TutorialsService.getAll();
             dispatch({
-                type:RETRIEVE_TUTORIALS,
-                payload:response.data
+                type: RETRIEVE_TUTORIALS,
+                payload: response.data
             })
         } catch (error) {
             console.log(error)
-        }    
-}
+        }
+    }
 
 export const getTutorialById = (tutorialId) => async (dispatch) => {
     const response = await TutorialsService.get(tutorialId);
@@ -38,4 +38,23 @@ export const getTutorialById = (tutorialId) => async (dispatch) => {
     })
 };
 
+export const deleteTutorialById = id =>
+    async (dispatch) => {
+        await TutorialsService.deleteTutorial(id);
+        dispatch({
+            type: DELETE_TUTORIAL,
+            payload: { id }
+        })
+    };
 
+export const updateTutorial = (id, tutorial) => {
+    return async (dispatch) => {
+      await TutorialsService.updateTutorial(id,tutorial)
+            .then(() => {
+                dispatch({
+                    type: UPDATE_TUTORIAL,
+                    payload: {tutorial}
+                })
+            });
+    }
+};

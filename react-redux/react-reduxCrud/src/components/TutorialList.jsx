@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import '../App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { retriveTutorial } from '../redux/action/TutorialsAction';
+import { retriveTutorial,deleteTutorialById } from '../redux/action/TutorialsAction';
 import { Link } from "react-router-dom";
 
 const TutorialList = () => {
@@ -16,6 +16,13 @@ const TutorialList = () => {
     dispatch(retriveTutorial())
   }, [])
 
+  const removeTutorial = (id) => {
+      dispatch(deleteTutorialById( id))
+      .then(() => {
+        dispatch(retriveTutorial())
+      })
+     
+  };
   return (
     <div className="list row">
       <table className="table">
@@ -37,7 +44,7 @@ const TutorialList = () => {
               <td> {tutorial.published ? "Published" : "Pending"}</td>
               <td>
               <button  >
-                <Link to={"/tutorials/" + tutorial.id} >
+                <Link to={"/tutorial/" + tutorial.id} >
                   <span className="view"><i className="fas fa-eye"></i></span>
                 </Link>
                 </button>
@@ -47,7 +54,7 @@ const TutorialList = () => {
                 </Link>
                 </button>
 
-                <button><span className="delete"><i className="fas fa-trash"></i></span></button></td>
+                <button onClick={()=>{removeTutorial(tutorial.id)}}><span className="delete"><i className="fas fa-trash"></i></span></button></td>
             </tr>
           ))
           }

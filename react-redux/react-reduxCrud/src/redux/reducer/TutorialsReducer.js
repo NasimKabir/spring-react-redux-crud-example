@@ -1,4 +1,4 @@
-import { CREATE_TUTORIAL, RETRIEVE_TUTORIALS, GET_TUTORIAL_ID, DELETE_TUTORIAL }
+import { CREATE_TUTORIAL, RETRIEVE_TUTORIALS, GET_TUTORIAL_ID, DELETE_TUTORIAL, UPDATE_TUTORIAL }
     from "../../redux/types/tutorialsTypes";
 
 const initialState = {
@@ -15,18 +15,11 @@ const TutorialsReducer = (state = initialState, action) => {
         case GET_TUTORIAL_ID:
             return { ...state, tutorial: payload };
         case DELETE_TUTORIAL:
-            return state.tutorials.filter(({ id }) => id !== payload.id);
+            return { tutorials: state.tutorials.filter(({ id }) => id !== payload.id) };
+        case UPDATE_TUTORIAL:
+            return  { ...state, tutorial: payload };
         default:
             return state;
     }
 }
-
-/* 
-        case DELETE_EMPLOYEE:
-            return {...state, employees: state.employees.filter((employee) => employee.id !== payload)};
-
-        case GET_EMPLOYEE_BY_ID:
-            return {...state, employee: payload}; */
-
-
 export default TutorialsReducer;

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import AddTutorial from "./components/AddTutorial";
 import TutorialList from './components/TutorialList';
 import ViewTutorial from './components/ViewTutorial';
+import UpdateTutorial from './components/UpdateTutorial';
 
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
           <Switch>
             <Route exact path={["/", "/tutorials"]} component={TutorialList} /> 
             <Route exact path="/add" component={AddTutorial} />
-            <Route exact path="/tutorials/:id" component={ViewTutorial} /> 
+            <Route exact path="/tutorial/:id" component={ViewTutorial} /> 
+            <Route exact path="/tutorials/:id" component={UpdateTutorial} /> 
           </Switch>
         </div>
   </Router>
